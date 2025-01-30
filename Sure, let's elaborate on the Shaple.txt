@@ -1,0 +1,90 @@
+Sure, let's elaborate on the Shapley value calculation for our example.
+
+### Scenario Recap:
+- **Tenants:** A, B, C
+- **Resource Demands:**
+  - Tenant A: 20 CPU, 50 Bandwidth
+  - Tenant B: 30 CPU, 70 Bandwidth
+  - Tenant C: 50 CPU, 100 Bandwidth
+- **Total Resources Available:** 100 CPU, 200 Bandwidth
+
+### Utility Function
+The utility for each tenant is based on the allocated resources. For simplicity:
+- Benefit function \( f(a_i) = 2 \times (\text{CPU allocation}) + 1 \times (\text{Bandwidth allocation}) \)
+- Cost function \( c(a_i) = 0.5 \times (\text{CPU allocation}) + 0.2 \times (\text{Bandwidth allocation}) \)
+
+### Calculate Individual Utilities
+1. **Tenant A:**
+   - \( f(A) = 2 \times 20 + 50 = 90 \)
+   - \( c(A) = 0.5 \times 20 + 0.2 \times 50 = 20 \)
+   - \( u_A = 90 - 20 = 70 \)
+
+2. **Tenant B:**
+   - \( f(B) = 2 \times 30 + 70 = 130 \)
+   - \( c(B) = 0.5 \times 30 + 0.2 \times 70 = 29 \)
+   - \( u_B = 130 - 29 = 101 \)
+
+3. **Tenant C:**
+   - \( f(C) = 2 \times 50 + 100 = 200 \)
+   - \( c(C) = 0.5 \times 50 + 0.2 \times 100 = 45 \)
+   - \( u_C = 200 - 45 = 155 \)
+
+### Calculate Coalition Utilities
+1. **Coalition AB:**
+   - \( f(AB) = 2 \times 50 + 120 = 220 \)
+   - \( c(AB) = 0.5 \times 50 + 0.2 \times 120 = 49 \)
+   - \( u_{AB} = 220 - 49 = 171 \)
+
+2. **Coalition AC:**
+   - \( f(AC) = 2 \times 70 + 150 = 290 \)
+   - \( c(AC) = 0.5 \times 70 + 0.2 \times 150 = 65 \)
+   - \( u_{AC} = 290 - 65 = 225 \)
+
+3. **Coalition BC:**
+   - \( f(BC) = 2 \times 80 + 170 = 330 \)
+   - \( c(BC) = 0.5 \times 80 + 0.2 \times 170 = 74 \)
+   - \( u_{BC} = 330 - 74 = 256 \)
+
+4. **Coalition ABC:**
+   - \( f(ABC) = 2 \times 100 + 200 = 400 \)
+   - \( c(ABC) = 0.5 \times 100 + 0.2 \times 200 = 90 \)
+   - \( u_{ABC} = 400 - 90 = 310 \)
+
+### Shapley Value Calculation
+The Shapley value is calculated by considering the marginal contribution of each tenant to every possible coalition. For simplicity, let's compute the Shapley value step by step for each tenant.
+
+#### Tenant A:
+- Contribution to \(\{A\}\) = 70
+- Contribution to \(\{A, B\}\) = \( u_{AB} - u_B = 171 - 101 = 70 \)
+- Contribution to \(\{A, C\}\) = \( u_{AC} - u_C = 225 - 155 = 70 \)
+- Contribution to \(\{A, B, C\}\) = \( u_{ABC} - u_{BC} = 310 - 256 = 54 \)
+
+Average of marginal contributions:
+\[ \phi_A = \frac{70 + 70 + 70 + 54}{4} = 66 \]
+
+#### Tenant B:
+- Contribution to \(\{B\}\) = 101
+- Contribution to \(\{A, B\}\) = \( u_{AB} - u_A = 171 - 70 = 101 \)
+- Contribution to \(\{B, C\}\) = \( u_{BC} - u_C = 256 - 155 = 101 \)
+- Contribution to \(\{A, B, C\}\) = \( u_{ABC} - u_{AC} = 310 - 225 = 85 \)
+
+Average of marginal contributions:
+\[ \phi_B = \frac{101 + 101 + 101 + 85}{4} = 97 \]
+
+#### Tenant C:
+- Contribution to \(\{C\}\) = 155
+- Contribution to \(\{A, C\}\) = \( u_{AC} - u_A = 225 - 70 = 155 \)
+- Contribution to \(\{B, C\}\) = \( u_{BC} - u_B = 256 - 101 = 155 \)
+- Contribution to \(\{A, B, C\}\) = \( u_{ABC} - u_{AB} = 310 - 171 = 139 \)
+
+Average of marginal contributions:
+\[ \phi_C = \frac{155 + 155 + 155 + 139}{4} = 151 \]
+
+### Summary
+- **Tenant A:** Shapley value \( = 66 \)
+- **Tenant B:** Shapley value \( = 97 \)
+- **Tenant C:** Shapley value \( = 151 \)
+
+The Shapley values ensure that the resources are distributed fairly based on each tenant's contribution to all possible coalitions. This method guarantees an equitable sharing of the total utility among all tenants.
+
+Feel free to ask if you have any more questions or need further clarification! 🌟
