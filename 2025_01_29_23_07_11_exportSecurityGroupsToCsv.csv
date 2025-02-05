@@ -1,2 +1,0 @@
-GroupId,GroupName,VpcId,Description,OwnerId,InboundRulesCount,OutboundRulesCount,Tags
-sg-0d400678bb9d691b8,ec2-rds-1,vpc-0664293971f19d4b9,Security group attached to instances to securely connect to database-1. Modification could lead to connection loss.,471112621121,0,1,
